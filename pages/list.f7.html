@@ -1,0 +1,61 @@
+<template>
+    <div class="page" data-name="list">
+      <div class="navbar">
+        <div class="navbar-inner sliding">
+          <div class="title">Wathclist</div>
+        </div>
+      </div>
+      <div class="page-content">
+        <div class="list media-list">
+            <ul>
+              <li class="swipeout">
+                <div class="item-content swipeout-content">
+                  <div class="item-media"><img src="https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg" width="44"/></div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">Yellow Submarine</div>
+                    </div>
+                    <div class="item-subtitle">Beatles</div>
+                  </div>
+                </div>
+                <div class="swipeout-actions-right">
+                    <a href="#" class="open-more-actions">More</a>
+                    <a href="#" class="swipeout-delete">Delete</a>
+                </div>
+              </li>
+              <li>
+                <a href="#" class="item-link item-content">
+                  <div class="item-media"><img src="https://cdn.framework7.io/placeholder/fashion-88x88-2.jpg" width="44"/></div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">Don't Stop Me Now</div>
+                    </div>
+                    <div class="item-subtitle">Queen</div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <div class="item-content">
+                  <div class="item-media"><img src="https://cdn.framework7.io/placeholder/fashion-88x88-3.jpg" width="44"/></div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">Billie Jean</div>
+                    </div>
+                    <div class="item-subtitle">Michael Jackson</div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+    </div>
+  </template>
+  <script>
+    export default {
+      data: function () {
+        return {
+          products: this.$root.products,
+        };
+      }
+    };
+  </script>
+  

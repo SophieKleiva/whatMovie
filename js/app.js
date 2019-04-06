@@ -12,6 +12,54 @@ import cordovaApp from './cordova-app.js';
 // Import Routes
 import routes from './routes.js';
 
+// Import theMovieDb API Key
+import { config } from './apikey.js'
+
+$$(document).on('page:init', '.page[data-name="home"]', function () {
+  Framework7.request.json('https://api.themoviedb.org/3/movie/now_playing?api_key=' + config.APIKEY + '&language=en-US&page=1', function (data) {
+    var imgUrl = 'https://image.tmdb.org/t/p/w500/';
+
+    data.results.forEach(function(entry) {
+      var cardsWrapper = $$('#cards');
+
+      var card = document.createElement('div');
+      $$(card).addClass('card card-expandable');
+      cardsWrapper.append(card);
+
+      var cardContent = document.createElement('div');
+      $$(cardContent).addClass('card-content');
+      card.append(cardContent);
+
+      var cardBackground = document.createElement('div');
+      $$(cardBackground).attr('style', 'background: url(' + imgUrl + entry.poster_path + ') no-repeat center bottom; background-size: cover; height: 500px');
+      cardContent.append(cardBackground);
+      
+      var closeCard = document.createElement('a');
+      $$(closeCard).attr('href', '#');
+      $$(closeCard).addClass('link card-close card-opened-fade-in color-white');
+      $$(closeCard).attr('style', 'position: absolute; right: 15px; top: 15px');
+      cardBackground.append(closeCard);
+
+      var closeCardIcon = document.createElement('i');
+      $$(closeCard).addClass('icon f7-icons');
+      $$(closeCard).html('close_round_fill');
+      closeCard.append(closeCardIcon);
+
+      var cardContentPadding = document.createElement('div');
+      $$(cardContentPadding).addClass('card-content-padding');
+      cardContent.append(cardContentPadding);
+
+      var cardH2 = document.createElement('h2');
+      $$(cardH2).html(entry.title);
+      cardContentPadding.append(cardH2);
+
+      var cardP = document.createElement('p');
+      $$(cardP).html(entry.overview);
+      cardContentPadding.append(cardP);
+    });
+  });
+});
+
 var app = new Framework7({
   root: '#app', // App root element
   id: 'org.evilcorp.whatmovie', // App bundle ID
@@ -77,6 +125,8 @@ var app = new Framework7({
   },
 });
 
+
+
 // Login Screen Demo
 $$('#my-login-screen .login-button').on('click', function () {
   var username = $$('#my-login-screen [name="username"]').val();
@@ -88,3 +138,4 @@ $$('#my-login-screen .login-button').on('click', function () {
   // Alert username and password
   app.dialog.alert('Username: ' + username + '<br>Password: ' + password);
 });
+
